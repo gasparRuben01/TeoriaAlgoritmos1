@@ -12,12 +12,30 @@ class ReverseCompare(object):
 	def __lt__(self, other):
 		return self.obj>other.obj
 
-def heap_select(elements, k):
-	heap=map(ReverseCompare, elements[:k])
+def heap_select(elements, k):	
+	""" Si k>0: retorna el k-esimo elemento mas pequenio, en caso de que k>len(elements), retorna el maximo
+	    Si k ==0: retorna el minimo
+	    Si k<0: retorna el k-esimo elemento mas grande, en caso de que |k|>len(elements), retorna el minimo"""
+	if k>0:
+		heap=map(ReverseCompare, elements[:k])
+		comparar= lambda e1, e2: e1<e2.obj
+		push= lambda heap, e: heapq.heappush(heap, ReverseCompare(e))
+		pop= lambda heap: heapq.heappop(heap).obj
+	elif k==0:
+		#no tiene sentido hacer un heap de size 0, asi que busco el minimo y listo
+		return min(elements)
+	else:	
+		k=-k
+		heap=elements[:k]
+		comparar= lambda e1, e2: e1>e2
+		push= lambda heap, e: heapq.heappush(heap, e)
+		pop= lambda heap: heapq.heappop(heap)
+
 	heapq.heapify(heap)
 	for i in elements[k:]:
-		i=ReverseCompare(i)
-		if (i>heap[0]):
-			heapq.heappop(heap)
-			heapq.heappush(heap, i)
-	return heap[0].obj
+		if comparar(i, heap[0]):
+			pop(heap)
+			push(heap, i)
+	
+	return pop(heap)
+
