@@ -20,10 +20,8 @@ def partition(elements):
 	return index
 
 
-#si la cantidad de elementos es menor a k, retorna el n-esimo elemento mas pequenio, donde n es la longitud de elements, osea, retorna el maximo
-#si k es negativo retorno el k-esimo mayor elemento, si |k|>n, entonces retora minimo
 def quick_select(elements, k):
-	"""Retorana k-esimo elemento mas pequeño si k es positivo. Si k es mayor a n (la longitud de la secuencia) retorna el maximo valor, si k es negativo
+	"""Retorana k-esimo elemento mas pequenio si k es positivo. Si k es mayor a n (la longitud de la secuencia) retorna el maximo valor, si k es negativo
 	   retorna el k-esimo mas grande. Si |k|>n, retorna el minimo elemento"""
 	if k<0:
 		k=len(elements)+k+1
