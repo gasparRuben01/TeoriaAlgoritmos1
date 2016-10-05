@@ -18,6 +18,7 @@ class TestDigraph(unittest.TestCase):
 			#los nodos adjacents no son recorridos en ningun orden en especial, por lo que pregunto si es alguno de la lista
 			self.assertTrue(i[1] in nodos_adjacentes)
 			nodos_recorridos.append(i[1])
+	
 		
 
 if __name__=='__main__':
