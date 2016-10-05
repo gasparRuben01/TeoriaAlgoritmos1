@@ -22,19 +22,25 @@ class DigraphNoPonderado(object):
 		self.digraph.add_edge(3, 4, 1)
 		self.digraph.add_edge(4, 7, 1)
 		self.digraph.add_edge(8, 4, 1)
-		self.distancias=[[0, 1, 2, 4, 5, 3, 4, 5, float('inf'), 1], [2, 0, 1, 3, 4, 2, 3, 5, float('inf'), 2], [1, 2, 0, 2, 3, 1, 2, 3, float('inf'), 1],
+		self.distancias=[[0, 1, 2, 4, 5, 3, 4, 5, float('inf'), 1], [2, 0, 1, 3, 4, 2, 3, 4, float('inf'), 2], [1, 2, 0, 2, 3, 1, 2, 3, float('inf'), 1],
 				  [float('inf'), float('inf'), float('inf'), 0, 1, float('inf'), float('inf'), 2, float('inf'), float('inf')], 
 				  [float('inf'), float('inf'), float('inf'), float('inf'), 0, float('inf'), float('inf'), 1, float('inf'), float('inf')],
 				  [float('inf'), float('inf'), float('inf'), 1, 2, 0, 1, 2, float('inf'), float('inf')],
 				  [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0, 1, float('inf'), float('inf')],
 				  [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0, float('inf'), float('inf')],
-				  [float('inf'), float('inf'), float('inf'), float('inf'), 1, float('inf'), float('inf'), float('inf'),0 , float('inf')],
+				  [float('inf'), float('inf'), float('inf'), float('inf'), 1, float('inf'), float('inf'), 2, 0, float('inf')],
 				  [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0]]
 	def check_distancias(self, path, origin):
-		for destiny in range(5):
+		for destiny in range(10):
 			if path.distance(destiny)!=self.distancias[origin][destiny]:
 				self.wrong_distance=(origin, destiny, path.distance(destiny))
+				if (path.distance(destiny)<float('inf')):				
+					print "##############################"
+					print "nodo origen:"+str(origin)+"nodo destino:"+str(destiny)+str(path.path(destiny))
+					print "##############################"
 				return False
+			if (path.visitado(destiny)):			
+				print "nodo origen:"+str(origin)+"nodo destino:"+str(destiny)+str(path.path(destiny))
 		
 		self.wrong_distance=None
 		return True

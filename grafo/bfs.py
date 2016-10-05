@@ -1,5 +1,4 @@
 import paths
-import sys
 
 class BFS(paths.Paths):
 	def __init__(self, digraph, origin):
@@ -16,6 +15,4 @@ class BFS(paths.Paths):
 					self.distances[i[1]]=self.distances[v]+1
 					self.edges[i[1]]=i
 					cola.append(i[1])
-
-	
 

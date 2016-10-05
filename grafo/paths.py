@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import digraph
 
 class Paths(object):
 	def __init__(self, digraph, origin_node):
@@ -10,23 +11,23 @@ class Paths(object):
 		"""retorna distancia desde origen a nodo v"""
 		return self.distances[v]
 
-	def visitado(v):
+	def visitado(self,v):
 		"""retorna true si v fue visitado"""
-		return distancia(v)<float('inf')
+		return self.distance(v)<float('inf')
 
-	def path(v):
+	def path(self, v):
 		"""retorna uno de los caminos mas cortos a v, partiendo del origen
 		   Si v es el origen retorna una lista vacia, si v no es alcanzable desde origen lanza
 	           lanza exception"""
-		if not visitado(v):
+		if not self.visitado(v):
 			raise ValueError("vertice no alcanzable desde origen")
-		stack=[]
+		path=[]
 		while self.edges[v]:
-			stack.append(self.edges[v])
+			path.insert(0, self.edges[v])
 			v=self.edges[v][0]
-		return stack
+		return path
 	
-	def edge_to(v):
+	def edge_to(self, v):
 		"""retorna la arista incidente a v, en el path de origin hasta v. si v no es alcanzable desde origen lanza exception"""
 		if not visitado(v):
 			raise ValueError("vertice no alcanzable desde origen")
