@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import unittest
-from Digraph import Digraph
+from digraph import digraph
 
 class TestDigraph(unittest.TestCase):
 	def test_iterador_de_aristas_adyacentes_a_nodo_v(self):
