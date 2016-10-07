@@ -2,6 +2,7 @@ import unittest
 import paths
 from bfs import BFS
 from digraph import Digraph
+import pdb
 
 #esta clase tiene un digrafo con las aristas y vertices ya fijados a manos. Junto con la distancia de los nodos.
 #la funcion de esta clase es ser utilizada en las pruebas.
@@ -30,18 +31,16 @@ class DigraphNoPonderado(object):
 				  [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0, float('inf'), float('inf')],
 				  [float('inf'), float('inf'), float('inf'), float('inf'), 1, float('inf'), float('inf'), 2, 0, float('inf')],
 				  [float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), float('inf'), 0]]
-	def check_distancias(self, path, origin):
-		for destiny in range(10):
-			if path.distance(destiny)!=self.distancias[origin][destiny]:
-				self.wrong_distance=(origin, destiny, path.distance(destiny))
-				if (path.distance(destiny)<float('inf')):				
-					print "##############################"
-					print "nodo origen:"+str(origin)+"nodo destino:"+str(destiny)+str(path.path(destiny))
-					print "##############################"
-				return False
-			if (path.visitado(destiny)):			
+	def check_distancias(self, path, origin, destiny):
+		if path.distance(destiny)!=self.distancias[origin][destiny]:
+			self.wrong_distance=(origin, destiny, path.distance(destiny))
+			if (path.visitado(destiny)):				
+				print "##############################"
 				print "nodo origen:"+str(origin)+"nodo destino:"+str(destiny)+str(path.path(destiny))
-		
+				print "##############################"
+			return False
+			
+		if path.visitado(destiny): print "nodo origen:"+str(origin)+"nodo destino:"+str(destiny)+str(path.path(destiny))
 		self.wrong_distance=None
 		return True
 	
@@ -51,11 +50,12 @@ digraph_no_ponderado=DigraphNoPonderado()
 class TestBFFS(unittest.TestCase):
 	def test_distancia(self):
 		for i in digraph_no_ponderado.digraph:
-			bfs=BFS(digraph_no_ponderado.digraph, i)
-			if not digraph_no_ponderado.check_distancias(bfs, i):
-				self.assertTrue(False, "Error la distancia: "+str(digraph_no_ponderado.wrong_distance[2])+" al nodo "+
-						str(digraph_no_ponderado.wrong_distance[1])+" desde "+
-						str(digraph_no_ponderado.wrong_distance[0])+" es incorrecta")
+			for j in digraph_no_ponderado.digraph:
+				bfs=BFS(digraph_no_ponderado.digraph, i, j)
+				if not digraph_no_ponderado.check_distancias(bfs, i, j):
+					self.assertTrue(False, "Error la distancia: "+str(digraph_no_ponderado.wrong_distance[2])+" al nodo "+
+							str(digraph_no_ponderado.wrong_distance[1])+" desde "+
+							str(digraph_no_ponderado.wrong_distance[0])+" es incorrecta")
 
 
 if __name__=='__main__':

@@ -10,9 +10,10 @@ class Digraph(object):
 	def v(self):
 		return len(self.vertexs)
 	
+	#las aristas son 3-uplas, peso , origen, destino
 	def add_edge(self, u, v, weigth=0):
 		"""Agrega una arista con peso weigth al grafo. Su cola es u y la cabeza v"""		
-		self.vertexs[u].append((u, v, weigth))
+		self.vertexs[u].append((weigth, u, v))
 	
 	def adj_e(self, v):
 		"""Retorna iterador de las aristas adyacentes a v"""

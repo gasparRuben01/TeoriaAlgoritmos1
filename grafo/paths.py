@@ -2,7 +2,9 @@
 import digraph
 
 class Paths(object):
-	def __init__(self, digraph, origin_node):
+	def __init__(self, digraph, origin_node, destiny):
+		if origin>digraph.v(): raise IndexError("origen no existe en digrafo")
+		if destiny>digraph.v():raise IndexError("destino no existe en digrafo")		
 		self.source=origin_node
 		self.distances=[float('inf')]*digraph.v()
 		self.edges=[None]*digraph.v()
@@ -24,7 +26,7 @@ class Paths(object):
 		path=[]
 		while self.edges[v]:
 			path.insert(0, self.edges[v])
-			v=self.edges[v][0]
+			v=self.edges[v][1]
 		return path
 	
 	def edge_to(self, v):
