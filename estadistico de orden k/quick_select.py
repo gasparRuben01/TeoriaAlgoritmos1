@@ -1,37 +1,41 @@
 #!usr/bin/env python
 
+import pdb
 
-
-def partition(elements):
+def partition(elements, iz, derch):
 	""" Funcion interna de quick_select, particiona la secuencia en tres grupos.
 	    Los elementos de la secuencia menores a index (elemento de la secuencia en la posicion index) a la izquierda de este y
             los mayores a su derecha. Retorna index (no el elemento, si no la posicion)"""
-	if not elements:
+	if not elements or iz>derch or iz>len(elements) or derch>len(elements):
 		raise ValueError('empty sequence')
 	else:
-		index=-1
+		index=iz-1
 		#tomo ultimo elemento como pivote
-		for i,j in enumerate(elements[0:-1]):
-			if j<elements[-1]:
+		for i,j in enumerate(elements[iz:derch], iz):
+			if j<elements[derch]:
 				index+=1
 				elements[i],elements[index]=elements[index],elements[i]
 		index+=1		
-		elements[index], elements[-1]=elements[-1], elements[index]
+		elements[index], elements[derch]=elements[derch], elements[index]
 	return index
 
-
 def quick_select(elements, k):
-	"""Retorana k-esimo elemento mas pequenio si k es positivo. Si k es mayor a n (la longitud de la secuencia) retorna el maximo valor, si k es negativo
-	   retorna el k-esimo mas grande. Si |k|>n, retorna el minimo elemento"""
+	""" si k es positivo o cero retorna el k esimo elemento mas pequenio, si k>len(elements), retorna el maximo
+	    si k es negativo retorna el k esimo elemento mas grande, si -k>len(elements), retorna el minimo"""
 	if k<0:
-		k=len(elements)+k+1
-		if k<0:
-			k=1
-	index=partition(elements)	
-	if index+1==k:
-		return elements[index]
-	elif index+1<k:
-		if index+1==len(elements):
+		#si k es negativo retorno el k esimo elemento mas grande, si |k|>n entonces retorno el minimo elemento
+		k=max(len(elements)+k,0)
+	i=0
+	d=len(elements)-1
+	while True:
+		index=partition(elements, i, d)
+		if index==k:
 			return elements[index]
-		return quick_select(elements[index+1:],k-index-1)
-	return quick_select(elements[:index], k)
+		elif index<k:
+			if index+1==len(elements):
+				return elements[index]
+			i=index+1
+		else:
+			d=index-1
+
+
