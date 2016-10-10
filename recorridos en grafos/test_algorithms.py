@@ -36,6 +36,8 @@ for i in range(int(argv[2])):
 
 print "alghorithm,destino,long_path,path"
 for d in sample:
+	#la funcion h se crea reteniendo a la 
+	#estructura heuristic
 	h = lambda v:  heuristic[v][d]
 	dijkstra = Dijkstra(digraph, 0, d)
 	bfs = BFS(digraph, 0, d)
