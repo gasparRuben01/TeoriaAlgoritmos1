@@ -25,14 +25,12 @@ def list_test(name):
 	return elements
 
 elements = list_test(sys.argv[1])
-print "list of integer ready"
 orders = {"fuerza bruta":fuerza_bruta, 
 "heap select":heap_select,
 "k_heapsort":k_heapsort,
 "k_selection":k_selection,
 "quick_select":quick_select,
 "sorted_selection":sorted_selection}
-print "orders ready"
 n = len(elements)
 ks = [0, n/2, n-1]
 

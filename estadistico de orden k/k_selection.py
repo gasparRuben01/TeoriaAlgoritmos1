@@ -14,7 +14,7 @@ def swap(elements, i, j):
 
 def k_selection(elements, k):
     n = len(elements)
-    for i in range(n):
+    for i in range(k+1):
         swap(elements, i, pos_min(elements, i, n))
 
     return elements[k]
