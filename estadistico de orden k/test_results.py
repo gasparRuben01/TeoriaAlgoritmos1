@@ -25,5 +25,6 @@ orders = {"fuerza bruta":fuerza_bruta, "heap select":heap_select,"k_heapsort":k_
 
 for order in orders.keys():
 	order_k = orders[order]
+	print order
 	result = order_k(elements[:], k)
 	print order + " con " + str(k) + " resulto " + str(result)
