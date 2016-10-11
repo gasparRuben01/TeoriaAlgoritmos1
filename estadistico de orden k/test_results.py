@@ -20,7 +20,7 @@ def list_test(name):
 
 elements = list_test(sys.argv[1])
 n = len(elements)
-k = int(random.uniform(0, n))
+k = 25000
 orders = {"fuerza bruta":fuerza_bruta, "heap select":heap_select,"k_heapsort":k_heapsort,"k_selection":k_selection,"quick_select":quick_select,"sorted_selection":sorted_selection}
 
 for order in orders.keys():
