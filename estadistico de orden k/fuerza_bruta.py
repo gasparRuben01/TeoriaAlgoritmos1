@@ -2,11 +2,14 @@
 
 def estadistico(n,k,elements):
     menoresQueN = 0
+    igualesQueN = -1
     for numero in elements:
         if numero < n:
-            menoresQueN = menoresQueN + 1
+            menoresQueN+=1
+	elif numero == n:
+	    igualesQueN+=1
 
-    return k == menoresQueN
+    return k>=menoresQueN and k<=menoresQueN+igualesQueN
 
 
 def fuerza_bruta(elements, k):
