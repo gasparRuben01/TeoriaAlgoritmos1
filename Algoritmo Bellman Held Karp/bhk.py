@@ -9,21 +9,17 @@ def subsets(n, N, M):
     return subset
 
 def min_cost(G, C, s, x):
-    cost = []
     s_x = s[:]
     s_x.remove(x)
-    for m in s:
-        if m == 0 or m == x: continue
-        cost.append((C[s_x, m][0] + G[m][x], m))
+    return min([(C[s_x, m][0] + G[m][x], m) for m in s_x])
 
-    return min(cost)
 
 def min_path(C, s, p):
     sset = set(s)
     path = [0]
     while p != 0:
         path.append(p)
-        _, q = C[sset, p]
+        q = C[sset, p][1]
         sset.remove(p)
         p = q
 
