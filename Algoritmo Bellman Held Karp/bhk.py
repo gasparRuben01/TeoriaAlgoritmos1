@@ -8,12 +8,16 @@ def subsets(n, N, M):
     subset = [list(s) for s in subset]
     return subset
 
+# genera un par (c, v) donde c es el menor 
+# costo de los calculados y v es el vertice
+# previo a x
 def min_cost(G, C, s, x):
     s_x = s[:]
     s_x.remove(x)
     return min([(C[s_x, m][0] + G[m][x], m) for m in s_x])
 
-
+# genera el circuito de hammilton cuyo costo 
+# es minimo
 def min_path(C, s, p):
     sset = set(s)
     path = [0]
