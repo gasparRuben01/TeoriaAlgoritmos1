@@ -1,7 +1,7 @@
-class CostPath(object):
-    """docstring for CostPath."""
+class StructBHK(object):
+    """docstring for StructBHK."""
     def __init__(self):
-        super(CostPath, self).__init__()
+        super(StructBHK, self).__init__()
         self.struct = {}
 
     def __getitem__(self, x):

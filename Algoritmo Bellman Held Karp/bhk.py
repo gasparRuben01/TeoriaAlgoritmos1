@@ -1,4 +1,4 @@
-from cost_path import *
+from struct_bhk import *
 from itertools import *
 
 # generar sub conjuntos de tamanio M
@@ -32,7 +32,7 @@ def min_path(C, s, p):
     return path
 
 def bhk(G, N):
-    C = CostPath()
+    C = StructBHK()
     for k in range(1,N):
         C[[k], k] = G[0][k], 0
 
