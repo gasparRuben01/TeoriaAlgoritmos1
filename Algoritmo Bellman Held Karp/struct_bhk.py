@@ -1,5 +1,6 @@
 class StructBHK(object):
-    """docstring for StructBHK."""
+    """Responsable de almacenar los costos calculados
+        al igual que los distintos vertices recorridos."""
     def __init__(self):
         super(StructBHK, self).__init__()
         self.struct = {}
