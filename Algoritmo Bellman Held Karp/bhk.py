@@ -5,8 +5,7 @@ from itertools import *
 # costo de los calculados y v es el vertice
 # previo a x
 def min_cost(G, C, s, x):
-    s_x = list(s)    
-    s_x.remove(x)
+    s_x = tuple(i for i in s if i != x)
     return min([(C[s_x, m][0] + G[m][x], m) for m in s_x])
 
 # genera el circuito de hammilton cuyo costo 
