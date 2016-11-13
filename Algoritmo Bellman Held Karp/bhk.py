@@ -1,18 +1,11 @@
 from struct_bhk import *
 from itertools import *
 
-# generar sub conjuntos de tamanio M
-# de un conjunto [n,N -1)
-def subsets(n, N, M):
-    subset = combinations(range(n, N), M)
-    subset = [list(s) for s in subset]
-    return subset
-
 # genera un par (c, v) donde c es el menor 
 # costo de los calculados y v es el vertice
 # previo a x
 def min_cost(G, C, s, x):
-    s_x = s[:]
+    s_x = list(s)    
     s_x.remove(x)
     return min([(C[s_x, m][0] + G[m][x], m) for m in s_x])
 
@@ -37,7 +30,7 @@ def bhk(G, N):
         C[[k], k] = G[0][k], 0
 
     for size in range(2,N):
-        for s in subsets(1, N, size):
+        for s in combinations(range(1, N), size):
             for x in s:
                 C[s, x] = min_cost(G, C, s, x)
 
