@@ -10,12 +10,13 @@ set(Ha,'Box','on','FontName','Arial','FontSize',8,'GridLineStyle','--','LineWidt
 grid on
 hold on
 
-SIM = dlmread("fuerza bruta.txt","\t",1,0);
+SIM = dlmread("datos/fuerza_bruta.txt","\t",1,0)
 
 plot(Ha,SIM(:,1),SIM(:,2),'-bo','linewidth',3,'markersize',4,'markerfacecolor','b');
-plot(Ha,SIM(:,1),SIM(:,3),'-ro','linewidth',2,'MarkerSize',3,'makerfacecolor','r');
+plot(Ha,SIM(:,1),SIM(:,3),'-ro','linewidth',2,'markersize',3,'markerfacecolor','r');
 plot(Ha,SIM(:,1),SIM(:,4),'-go','linewidth',1,'markersize',2,'markerfacecolor','g');
-axis([0 100000 0 650]);
+
+%axis([0 100000 0 650]);
 
 ylabel('Tiempo [s]');
 xlabel('Cantidad de elemento [n]');
