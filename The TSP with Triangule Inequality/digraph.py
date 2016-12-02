@@ -71,5 +71,10 @@ class Digraph(object):
 
 	def pre_order(self, u, order):
 		order.append(u)
-		for v in self.adj(u):
+		pqueue = PQueue()
+		for e in self.adj_e(u):
+			pqueue.push(e.weigth, e.dst)
+
+		while not pqueue.empty():
+			v = pqueue.pop()
 			self.pre_order(v, order)

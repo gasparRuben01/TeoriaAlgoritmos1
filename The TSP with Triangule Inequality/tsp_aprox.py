@@ -6,7 +6,7 @@ def tsp_aprox(G, N):
     MST = G.mst_prim(root)
     MST.pre_order(root, path)
     path.append(root)
-    for i in range(N - 1):
-        c += G.weigth(i, i + 1)
+    for i in range(N):
+        c += G.weigth(path[i], path[i+1])
 
     return c, path

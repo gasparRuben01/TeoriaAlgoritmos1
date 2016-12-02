@@ -54,6 +54,17 @@ if argv[1] == "-a":
 
 if argv[1] == "-t":
 	name_file = "graph_48_vertex.txt"
-	G = read_file(name_file)
+	matrix = []
+	with open(name_file, "rb") as csvfile:
+		for line in csvfile:
+			line = line.split(" ")
+			line = [int(v) for v in line]
+			matrix.append(line[:])
+
 	for N in range(4, int(argv[2])):
+		G = Digraph(N)
+		for i in range(N):
+			for j in range(N):
+				G.add_edge(i, j, matrix[i][j])
+				
 		test_tsp(G, N)
