@@ -53,7 +53,7 @@ if argv[1] == "-a":
 		test_tsp(G, N)
 
 if argv[1] == "-t":
-	name_file = "graph_48_vertex.txt"
+	name_file = "graph_15_vertex.txt"
 	matrix = []
 	with open(name_file, "rb") as csvfile:
 		for line in csvfile:
