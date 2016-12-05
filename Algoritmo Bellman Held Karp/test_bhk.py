@@ -48,7 +48,7 @@ if argv[1] == "-a":
 		test_tsp(G, N)
 		
 if argv[1] == "-t":
-	name_file = "graph_48_vertex.txt"
+	name_file = "graph_15_vertex.txt"
 	G = read_file(name_file)
 	for N in range(4, int(argv[2])):
 		test_tsp(G, N)
